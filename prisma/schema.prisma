@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId String @id @unique @default(uuid())
+  firstName String
+  lastName String
+  email String @unique
+  password String
+  phone String? // prisma sets not null by default, a ? removes the not null for phone (optional)
+  UserOrganisation UserOrganisation[]
+}
+
+model Organisation {
+  orgId String @id @unique @default(uuid())
+  name String // required by default
+  description String? // optional
+  UserOrganisation UserOrganisation[]
+}
+
+// a table/model to map users to all the orgs they're part of
+model UserOrganisation {
+  id String @id @unique @default(uuid())
+  userId  String
+  user         User           @relation(fields: [userId], references: [userId])
+  orgId String
+  organisation         Organisation           @relation(fields: [orgId], references: [orgId])
+  founder Boolean @default(false)
+}
