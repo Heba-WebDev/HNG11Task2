@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Body, Param, UseGuards } from '@nestjs/common';
 import { RegisterUserDto, LoginUserDto } from './dtos';
 import { UsersService } from './users.service';
-import { GetAuthGuard } from './guards/user-auth.guard';
+import { UserAuthGuard } from './guards/user-auth.guard';
 
 @Controller('')
 export class UsersController {
@@ -18,7 +18,7 @@ export class UsersController {
   }
 
   @Get('/api/users/:id')
-  @UseGuards(GetAuthGuard)
+  @UseGuards(UserAuthGuard)
   async get(@Param('id') id: string) {
     return this.usersService.get(id);
   }

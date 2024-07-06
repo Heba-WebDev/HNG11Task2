@@ -9,16 +9,23 @@ import { JwtAdapter } from '../../config/index';
 import { payload } from '../../interfaces';
 
 @Injectable()
-export class GetAuthGuard implements CanActivate {
+export class UserAuthGuard implements CanActivate {
   constructor(private readonly usersService: UsersService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest();
-    const token = req.headers['Authorization'] || req.headers['authorization'];
+    const auth = req.headers['Authorization'] || req.headers['authorization'];
+    if (!auth.startsWith('Bearer '))
+      throw new UnauthorizedException({
+        status: 'Unauthorized',
+        message: 'A valid token that starts with Bearer is required',
+        statusCode: 401,
+      });
+    const token = auth.split(' ').at(1) || '';
     if (!token) {
       throw new UnauthorizedException({
         status: 'Unauthorized',
-        message: 'Unauthorized to perform this action',
+        message: 'Invalid token',
         statusCode: 401,
       });
     }

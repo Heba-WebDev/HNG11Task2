@@ -10,5 +10,6 @@ export const prismaMock = {
   userOrganisation: {
     create: jest.fn(),
     findFirst: jest.fn(),
+    findMany: jest.fn(),
   },
 };
