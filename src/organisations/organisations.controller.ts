@@ -1,8 +1,7 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { OrgAuthGuard } from './guards/org-auth.guard';
 import { OrganisationsService } from './organisations.service';
-import { CreateOrgDto } from './dtos';
-import { AddMemberDto } from './dtos/add-member.dto';
+import { CreateOrgDto, AddMemberDto } from './dtos';
 
 type Obj = {
   userId: string;
