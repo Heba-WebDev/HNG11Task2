@@ -1,16 +1,16 @@
 
-# _HNG11 Stage 2 task_
+# _HNG11 Stage 2 task_ 🤓
 
 This project is a simple API built with NestJS, Typescript, Postgres and it's designed to handle users and organizations management.
 
 
-## _Features_
+## _Features_ 👩‍💻
   - User registration and login
   - Organization creation and membership management
   - Secure authentication using JWT tokens
 
 
-## _Endpoints_
+## _Endpoints_ ⛳
 
 ### Register User
  - Endpoint: POST /auth/register
@@ -41,7 +41,7 @@ This project is a simple API built with NestJS, Typescript, Postgres and it's de
  - Description: Retrieve an organization details by ID (requires authentication).
 
 
-## Installation
+## Installation 🖥️
 
 1. Clone this repository.
 2. Install dependencies using `npm install`.
@@ -49,6 +49,6 @@ This project is a simple API built with NestJS, Typescript, Postgres and it's de
 4. Run the application using `npm run start:dev`.
 
 
-# License
+# License 💳
 
 This project is licensed under the MIT License.
