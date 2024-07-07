@@ -26,17 +26,21 @@ describe('Users E2E test', () => {
     await app.init();
   });
 
-  //   it('It should create a new user and a default organisation', () => {
-  //     return request(app.getHttpServer())
-  //       .post('/auth/register')
-  //       .send({
-  //         firstName: 'Haboosh',
-  //         lastName: 'Dev',
-  //         email: 'heba_dev@gmail.com',
-  //         password: '123456',
-  //       })
-  //       .expect(201);
-  //   });
+  it('It should create a new user and a default organisation', () => {
+    function generateUniqueEmail(baseEmail: string): string {
+      const timestamp = Date.now();
+      return `${baseEmail}_${timestamp}@example.com`;
+    }
+    return request(app.getHttpServer())
+      .post('/auth/register')
+      .send({
+        firstName: 'Haboosh',
+        lastName: 'Dev',
+        email: generateUniqueEmail('test'),
+        password: '123456',
+      })
+      .expect(201);
+  });
 
   it('It should return 422 status if the payload is incorrect', () => {
     return request(app.getHttpServer())
