@@ -115,7 +115,7 @@ describe('UsersService', () => {
       const duration = '1h';
       const token = await JwtAdapter.generateToken(payload, duration);
       const decodedToken: any = await JwtAdapter.validateToken(token);
-
+      expect(decodedToken.userId).toBeDefined();
       expect(typeof decodedToken.iat).toBe('number');
       expect(typeof decodedToken.exp).toBe('number');
       expect(decodedToken.exp * 1000).toBeGreaterThan(Date.now());
