@@ -17,6 +17,7 @@ export class OrganisationsController {
     return this.orgsService.create(orgDto, userId);
   }
 
+  @UseGuards(OrgAuthGuard)
   @Post('/api/organisations/:orgId/users')
   async addMember(@Param('orgId') orgId: string, @Body() dto: AddMemberDto) {
     return this.orgsService.addMember(orgId, dto.userId);
