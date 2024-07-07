@@ -4,8 +4,6 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { PrismaService } from '../src/prisma/prisma.service';
-import { userDtoMock } from './mocks/user-dto.mock';
-import { prismaMock } from './mocks/prisma.mock';
 
 describe('Users E2E test', () => {
   let app: INestApplication;
@@ -13,12 +11,7 @@ describe('Users E2E test', () => {
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
-      providers: [
-        {
-          provide: PrismaService,
-          useValue: prismaMock,
-        },
-      ],
+      providers: [PrismaService],
     }).compile();
 
     app = moduleFixture.createNestApplication();
