@@ -34,10 +34,17 @@ export class OrganisationsService {
         },
       },
     });
+    const transformedOrgs = orgs.map((org) => ({
+      orgId: org.organisation.orgId,
+      name: org.organisation.name,
+      description: org.organisation.description || '',
+    }));
     return {
       status: 'success',
       message: null,
-      data: orgs,
+      data: {
+        organisations: transformedOrgs,
+      },
     };
   }
 
