@@ -41,7 +41,7 @@ export class OrganisationsService {
     }));
     return {
       status: 'success',
-      message: null,
+      message: 'Organisations retrieved successfully',
       data: {
         organisations: transformedOrgs,
       },
